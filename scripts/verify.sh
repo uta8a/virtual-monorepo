@@ -56,6 +56,13 @@ if rg -n 'vmr codex' \
   failed=1
 fi
 
+if ! rg -q 'project-root-session' \
+  "${root}/plugins/virtual-monorepo/skills/session-management/SKILL.md" ||
+   ! rg -q 'project-root-session' "${root}/workspace/AGENTS.md"; then
+  echo "reserved project-root-session guidance is missing" >&2
+  failed=1
+fi
+
 if ! rg -q 'invalid cwd' "${root}/docs/codex-hooks.md" ||
    ! rg -q 'stop Codex' "${root}/workspace/AGENTS.md"; then
   echo "invalid cwd fail-closed guidance is missing" >&2
