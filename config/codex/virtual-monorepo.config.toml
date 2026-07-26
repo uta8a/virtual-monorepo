@@ -1,0 +1,12 @@
+# Start the loopback receiver before Codex:
+#   vmr otel serve
+# Then start Codex with this profile:
+#   codex --profile virtual-monorepo
+
+[otel]
+environment = "local"
+log_user_prompt = true
+
+[otel.exporter."otlp-http"]
+endpoint = "http://127.0.0.1:4318/v1/logs"
+protocol = "json"

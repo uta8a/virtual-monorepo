@@ -1,0 +1,20 @@
+{
+  "name": "virtual-monorepo",
+  "interface": {
+    "displayName": "Virtual Monorepo"
+  },
+  "plugins": [
+    {
+      "name": "virtual-monorepo",
+      "source": {
+        "source": "local",
+        "path": "./plugins/virtual-monorepo"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 # Virtual Monorepo
 
 A Codex-only Virtual Monorepo template. This public repository provides the
-configuration and documentation for coordinating work across multiple
-repositories without combining their histories.
+configuration, documentation, scripts, and Codex Plugins for coordinating work
+across multiple repositories without combining their histories.
 
 The released [`uta8a/vmr`](https://github.com/uta8a/vmr) binary is the control
 plane. Its implementation does not live in this repository. Nix pins the
@@ -41,6 +41,7 @@ See [Repository boundaries](docs/repository-boundaries.md) and
 ## Requirements
 
 - Nix with flakes enabled
+- Codex CLI
 - Access to every private repository declared by the local Workspace
 
 Do not install `vmr` separately or build it from `main`. `flake.nix` is the
@@ -56,17 +57,45 @@ environment:
 nix develop
 vmr version
 ./scripts/bootstrap.sh
+./scripts/install-plugin.sh
 ./scripts/verify.sh
 ```
 
 `bootstrap.sh` initializes or validates the shared clones and nested private
-repositories without replacing existing data.
+repositories without replacing existing data. It also installs the
+repository-managed Codex profile at
+`~/.codex/virtual-monorepo.config.toml`, or below `$CODEX_HOME` when set. A
+differing existing profile is never overwritten.
 
 Run an individual command without entering an interactive development shell:
 
 ```bash
 nix run .#vmr -- version
 ```
+
+## Run Codex
+
+Start the loopback OpenTelemetry receiver inside `nix develop`:
+
+```bash
+vmr otel serve
+```
+
+From another shell in the same Nix environment, start Codex at the Virtual
+Monorepo root:
+
+```bash
+codex --profile virtual-monorepo
+```
+
+The profile sends Codex log events as OTLP/HTTP JSON to
+`127.0.0.1:4318`. `vmr` redacts and bounds records before writing them to the
+private Workspace. Starting Codex without this profile leaves the Virtual
+Monorepo exporter disabled.
+
+Use the installed Session-management Skill to create and operate task Sessions.
+Session work happens in linked worktrees under the private Workspace, never in
+the shared clones under `repos/`.
 
 ## Safety
 

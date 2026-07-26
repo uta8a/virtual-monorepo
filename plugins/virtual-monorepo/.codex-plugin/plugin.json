@@ -1,0 +1,16 @@
+{
+  "name": "virtual-monorepo",
+  "version": "0.1.0+codex.20260726054751",
+  "description": "Connect Codex lifecycle events to a Virtual Monorepo",
+  "author": {
+    "name": "uta8a"
+  },
+  "interface": {
+    "displayName": "Virtual Monorepo",
+    "shortDescription": "Record Codex work through the VMR control plane.",
+    "longDescription": "Connects Codex lifecycle events to the released vmr CLI for durable, redacted evidence capture.",
+    "developerName": "uta8a",
+    "category": "Productivity",
+    "capabilities": []
+  }
+}
