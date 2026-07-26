@@ -54,28 +54,37 @@ Create a repository from this template, clone it, and enter its pinned
 environment:
 
 ```bash
-nix develop
+nix --extra-experimental-features "nix-command flakes" develop
 vmr version
 ./scripts/bootstrap.sh
 ./scripts/install-plugin.sh
 ./scripts/verify.sh
 ```
 
+The command-line flag works even when Nix experimental features are disabled
+globally. To enable them permanently, add the following to
+`~/.config/nix/nix.conf` and use `nix develop` normally:
+
+```ini
+experimental-features = nix-command flakes
+```
+
 `bootstrap.sh` initializes or validates the shared clones and nested private
 repositories without replacing existing data. It also installs the
 repository-managed Codex profile at
-`~/.codex/virtual-monorepo.config.toml`, or below `$CODEX_HOME` when set. A
-differing existing profile is never overwritten.
+`~/.codex/virtual-monorepo.config.toml`, or below `$CODEX_HOME` when set.
+Because this is a repository-managed profile, each bootstrap run replaces it
+with the repository version while preserving file mode `0600`.
 
 Run an individual command without entering an interactive development shell:
 
 ```bash
-nix run .#vmr -- version
+nix --extra-experimental-features "nix-command flakes" run .#vmr -- version
 ```
 
 ## Run Codex
 
-Start the loopback OpenTelemetry receiver inside `nix develop`:
+Start the loopback OpenTelemetry receiver inside the development shell:
 
 ```bash
 vmr otel serve
