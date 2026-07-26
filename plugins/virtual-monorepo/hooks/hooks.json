@@ -1,0 +1,53 @@
+{
+  "description": "Delegate Codex lifecycle association to the released vmr CLI.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "vmr hook receive --event SessionStart",
+            "timeout": 30,
+            "statusMessage": "Loading the Virtual Monorepo Session"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "manual|auto",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "vmr hook receive --event PreCompact",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "matcher": "manual|auto",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "vmr hook receive --event PostCompact",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "vmr hook receive --event SessionEnd",
+            "timeout": 3,
+            "statusMessage": "Recording final Virtual Monorepo evidence"
+          }
+        ]
+      }
+    ]
+  }
+}
