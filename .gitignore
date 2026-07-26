@@ -1,0 +1,11 @@
+# Local repository clones
+/repos/*
+!/repos/README.md
+
+# Private workspace repository
+/workspace/*
+!/workspace/AGENTS.md
+
+# Private LLM Wiki repository
+/wiki/*
+!/wiki/README.md

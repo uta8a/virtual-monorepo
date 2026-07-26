@@ -1,0 +1,11 @@
+schema_version: 1
+
+repositories:
+  - id: vmr
+    remote: https://github.com/uta8a/vmr.git
+    path: repos/vmr
+    default_branch: main
+  - id: website
+    remote: https://github.com/uta8a/website.git
+    path: repos/website
+    default_branch: main
