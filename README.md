@@ -5,7 +5,8 @@ configuration and documentation for coordinating work across multiple
 repositories without combining their histories.
 
 The released [`uta8a/vmr`](https://github.com/uta8a/vmr) binary is the control
-plane. Its implementation does not live in this repository.
+plane. Its implementation does not live in this repository. Nix pins the
+required GitHub Release and verifies the asset for each supported platform.
 
 ## Repository model
 
@@ -37,6 +38,36 @@ unique across both manifests.
 See [Repository boundaries](docs/repository-boundaries.md) and
 [Architecture](docs/architecture.md) for the ownership and storage model.
 
+## Requirements
+
+- Nix with flakes enabled
+- Access to every private repository declared by the local Workspace
+
+Do not install `vmr` separately or build it from `main`. `flake.nix` is the
+source of truth for the released version and platform hashes; `flake.lock`
+pins Nixpkgs.
+
+## Initialize
+
+Create a repository from this template, clone it, and enter its pinned
+environment:
+
+```bash
+nix develop
+vmr version
+./scripts/bootstrap.sh
+./scripts/verify.sh
+```
+
+`bootstrap.sh` initializes or validates the shared clones and nested private
+repositories without replacing existing data.
+
+Run an individual command without entering an interactive development shell:
+
+```bash
+nix run .#vmr -- version
+```
+
 ## Safety
 
 - Keep all Virtual Monorepo state below this repository root.
@@ -46,6 +77,8 @@ See [Repository boundaries](docs/repository-boundaries.md) and
   `workspace/.vmr/credentials.yaml`.
 - Never persist tokens, passwords, 1Password secret references, or unredacted
   Codex events.
+- Use released `vmr` commands for repository, Session, Report, and Wiki state
+  transitions instead of editing generated state manually.
 
 See [Security](docs/security.md) and
 [1Password integration](docs/onepassword.md) for the persistence rules.
