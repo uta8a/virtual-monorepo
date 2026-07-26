@@ -1,0 +1,4 @@
+interface:
+  display_name: "Address Blog Review"
+  short_description: "Resolve inline TODO feedback in blog Markdown"
+  default_prompt: "Use $address-blog-review to address the completed review of my blog post."
