@@ -1,0 +1,22 @@
+{
+  "name": "blog",
+  "version": "0.1.0",
+  "description": "Address inline review feedback in blog Markdown",
+  "author": {
+    "name": "uta8a"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Blog",
+    "shortDescription": "Resolve reviewed TODOs in blog Markdown.",
+    "longDescription": "Preserves each reviewed blog draft in Git, resolves inline TODO feedback one item at a time, and returns the draft for another review.",
+    "developerName": "uta8a",
+    "category": "Productivity",
+    "capabilities": [
+      "Write"
+    ],
+    "defaultPrompt": [
+      "ブログのレビューが終わりました。TODOを対応してください。"
+    ]
+  }
+}
