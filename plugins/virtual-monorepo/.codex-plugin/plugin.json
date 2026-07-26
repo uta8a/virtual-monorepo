@@ -1,6 +1,6 @@
 {
   "name": "virtual-monorepo",
-  "version": "0.1.0+codex.20260726071253",
+  "version": "0.1.0+codex.20260726072758",
   "description": "Manage Codex work through Virtual Monorepo Sessions",
   "author": {
     "name": "uta8a"
