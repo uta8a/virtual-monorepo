@@ -14,6 +14,7 @@ require_file() {
 for path in \
   README.md AGENTS.md LICENSE .gitignore flake.nix flake.lock repositories.yaml \
   config/codex/virtual-monorepo.config.toml \
+  scripts/ingest-virtual-monorepo-wiki.sh \
   repos/README.md workspace/AGENTS.md workspace/repositories.private.yaml \
   wiki/README.md .agents/plugins/marketplace.json plugins/README.md \
   plugins/virtual-monorepo/.codex-plugin/plugin.json \
