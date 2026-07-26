@@ -1,0 +1,4 @@
+interface:
+  display_name: "Consult LLM Wiki"
+  short_description: "Use approved Wiki knowledge only when requested"
+  default_prompt: "Use $consult-llm-wiki to consult the LLM Wiki before handling this task."

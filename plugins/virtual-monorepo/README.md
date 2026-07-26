@@ -1,7 +1,7 @@
 # Virtual Monorepo Codex Plugin
 
-This Codex-only Plugin provides Session management, Session Report, and Wiki
-curation skills. Its lifecycle Hooks are discovered from
+This Codex-only Plugin provides Session management, Session Report, Wiki
+curation, and explicitly requested Wiki consultation skills. Its lifecycle Hooks are discovered from
 `hooks/hooks.json` and delegate all persistence to:
 
 ```text
