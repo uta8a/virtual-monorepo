@@ -19,16 +19,18 @@ fi
 cd -- "${root}"
 vmr init
 
-if [[ -e "${codex_profile}" ]] &&
-   ! cmp -s -- "${codex_profile_source}" "${codex_profile}"; then
-  echo "error: refusing to overwrite differing Codex profile ${codex_profile}" >&2
-  echo "compare it with ${codex_profile_source} and update it manually" >&2
-  exit 1
+profile_action="installed"
+if [[ -e "${codex_profile}" ]]; then
+  if cmp -s -- "${codex_profile_source}" "${codex_profile}"; then
+    profile_action="verified"
+  else
+    profile_action="updated"
+  fi
 fi
 
 mkdir -p -- "${codex_dir}"
 install -m 0600 -- "${codex_profile_source}" "${codex_profile}"
 
-echo "installed Codex profile: ${codex_profile}"
+echo "${profile_action} Codex profile: ${codex_profile}"
 echo "start the receiver with: vmr otel serve"
 echo "start Codex with: codex --profile virtual-monorepo"

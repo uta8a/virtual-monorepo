@@ -44,10 +44,9 @@ events, when used, are kept separately as `exec-events.jsonl`.
 
 `scripts/bootstrap.sh` installs the OTel settings as the user-level Codex
 profile `~/.codex/virtual-monorepo.config.toml`. Project `.codex/config.toml`
-cannot override telemetry routing. The bootstrap script refuses to replace a
-differing profile; compare it with
-`config/codex/virtual-monorepo.config.toml` and resolve the difference
-explicitly.
+cannot override telemetry routing. The profile is repository-managed, so each
+bootstrap run replaces it with `config/codex/virtual-monorepo.config.toml` and
+sets file mode `0600`.
 
 Plugin Hook trust remains in Codex's normal review flow. The adapter never
 auto-approves permission requests or auto-continues after `Stop`.

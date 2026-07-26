@@ -3,10 +3,42 @@
 # Then start Codex with this profile:
 #   codex --profile virtual-monorepo
 
+# Ask for approval only when Codex needs to cross an active sandbox or policy
+# boundary. Commands already allowed by the sandbox continue automatically.
+approval_policy = "on-request"
+
+# Send eligible approval requests to Codex's automatic reviewer instead of
+# pausing for a human decision. The reviewer can approve or deny the request,
+# but it does not widen the sandbox boundary.
+approvals_reviewer = "auto_review"
+
+# Allow reads everywhere exposed by the sandbox and writes only in the current
+# workspace plus explicitly configured writable roots.
+sandbox_mode = "workspace-write"
+
+# Force shell tools to use non-login shells. This avoids loading interactive
+# login startup files and rejects commands that explicitly require login mode.
+allow_login_shell = false
+
+[sandbox_workspace_write]
+# Allow commands running inside the workspace-write sandbox to access the
+# network. Approval may still be required for operations outside other policy
+# boundaries.
+network_access = true
+
 [otel]
+# Identify telemetry from this profile as local execution.
 environment = "local"
+
+# Include user prompts in local OpenTelemetry events so vmr can associate
+# project-root instructions with delegated Sessions. Redaction still applies
+# before durable VMR storage.
 log_user_prompt = true
 
 [otel.exporter."otlp-http"]
+# Send telemetry to the loopback-only vmr receiver; no remote collector is
+# contacted by this endpoint.
 endpoint = "http://127.0.0.1:4318/v1/logs"
+
+# Encode OTLP/HTTP payloads as JSON for the vmr receiver.
 protocol = "json"
