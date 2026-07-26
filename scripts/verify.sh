@@ -14,6 +14,7 @@ require_file() {
 for path in \
   README.md AGENTS.md LICENSE .gitignore flake.nix flake.lock repositories.yaml \
   config/codex/virtual-monorepo.config.toml \
+  scripts/ingest-virtual-monorepo-wiki.sh \
   repos/README.md workspace/AGENTS.md workspace/repositories.private.yaml \
   wiki/README.md .agents/plugins/marketplace.json plugins/README.md \
   plugins/virtual-monorepo/.codex-plugin/plugin.json \
@@ -53,6 +54,13 @@ if rg -n 'vmr codex' \
   "${root}/plugins" \
   "${root}/workspace/AGENTS.md"; then
   echo "removed vmr codex interface is still referenced" >&2
+  failed=1
+fi
+
+if ! rg -q 'project-root-session' \
+  "${root}/plugins/virtual-monorepo/skills/session-management/SKILL.md" ||
+   ! rg -q 'project-root-session' "${root}/workspace/AGENTS.md"; then
+  echo "reserved project-root-session guidance is missing" >&2
   failed=1
 fi
 
