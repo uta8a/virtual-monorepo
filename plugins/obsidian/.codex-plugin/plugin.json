@@ -1,0 +1,22 @@
+{
+  "name": "obsidian",
+  "version": "0.1.0",
+  "description": "Research existing Obsidian notes through the official CLI",
+  "author": {
+    "name": "uta8a"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Obsidian",
+    "shortDescription": "Research Obsidian notes with traceable references.",
+    "longDescription": "Searches and reads an explicitly selected Obsidian vault through the official CLI, then answers with precise note references while keeping the vault read-only.",
+    "developerName": "uta8a",
+    "category": "Productivity",
+    "capabilities": [
+      "Read"
+    ],
+    "defaultPrompt": [
+      "Obsidianのノートを調査し、参照元を示して回答してください。"
+    ]
+  }
+}
