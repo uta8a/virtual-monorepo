@@ -1,22 +1,23 @@
 {
   "name": "obsidian",
   "version": "0.1.0",
-  "description": "Research existing Obsidian notes through the official CLI",
+  "description": "Research Obsidian notes and review months with Linear task sources",
   "author": {
     "name": "uta8a"
   },
   "skills": "./skills/",
   "interface": {
     "displayName": "Obsidian",
-    "shortDescription": "Research Obsidian notes with traceable references.",
-    "longDescription": "Searches and reads an explicitly selected Obsidian vault through the official CLI, then answers with precise note references while keeping the vault read-only.",
+    "shortDescription": "Research notes and review months with task references.",
+    "longDescription": "Searches and reads an explicitly selected Obsidian vault through the official CLI, then answers with precise note references while keeping the vault read-only. Monthly reviews combine Linear tasks and corresponding notes to provide source-backed moments and reflection prompts in chat, helping the user explore their feelings and what could make next month more enjoyable.",
     "developerName": "uta8a",
     "category": "Productivity",
     "capabilities": [
       "Read"
     ],
     "defaultPrompt": [
-      "Obsidianのノートを調査し、参照元を示して回答してください。"
+      "Obsidianのノートを調査し、参照元を示して回答してください。",
+      "先月のLinearタスクと対応するObsidianノートから、月の振り返りをチャットにまとめてください。"
     ]
   }
 }
